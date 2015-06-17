@@ -1,0 +1,52 @@
+{
+  "name": "endo-map",
+  "version": "0.0.1",
+  "description": "Endomondo Map Edid",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wregen/endo-map"
+  },
+  "keywords": [
+    "cv",
+    "angularjs"
+  ],
+  "author": "wregen <W.Regenczuk@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wregen/wregen.github.io/issues"
+  },
+  "homepage": "https://github.com/wregen/wregen.github.io",
+  "devDependencies": {
+    "del": "^1.1.1",
+    "event-stream": "^3.3.0",
+    "gulp": "^3.8.11",
+    "gulp-angular-filesort": "^1.1.1",
+    "gulp-angular-template": "^0.2.3",
+    "gulp-angular-templatecache": "^1.6.0",
+    "gulp-content-includer": "0.0.1",
+    "gulp-dom": "^0.5.0",
+    "gulp-inject": "^1.2.0",
+    "gulp-inject-element": "^2.0.2",
+    "gulp-inline-angular-templates": "^0.1.5",
+    "gulp-minify-html": "^1.0.2",
+    "gulp-nginclude": "^0.4.5",
+    "gulp-print": "^1.1.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-serve": "^1.0.0",
+    "gulp-uglify": "^1.2.0",
+    "gulp-util": "^3.0.4",
+    "gulp-wait": "0.0.2",
+    "mustache": "^2.0.0",
+    "run-sequence": "^1.0.2"
+  },
+  "dependencies": {
+    "gulp-concat": "^2.5.2",
+    "swig": "^1.4.2"
+  }
+}

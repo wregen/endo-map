@@ -1,0 +1,356 @@
+/* tmp */
+.tmp, .tmp * {
+    border:1px solid red;
+}
+.carousel5 li {
+    width:100%;
+    height:100%;
+    font-size:30px;
+    background-color: #ccc;
+}
+
+/* materializecss fixes */
+.card .card-content {
+    padding: 40px;
+}
+.progress {
+    height: 15px;
+    color: #fff;
+    background: #F9F9F9;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,.1);
+}
+.progress>div {
+    text-align: center;
+    background-color: #64B5F6;
+    float: left;
+    height: 15px;
+    line-height: 15px;
+}
+.row .col {
+    padding: 0;
+}
+#preloader {
+    margin:4em;
+}
+.divider-menu {
+    margin: 1rem 2.2rem;
+}
+.extended-holder {
+    padding: 1.5rem 0 .2rem 0;
+}
+.map {
+    height:400px;
+    width:100%;
+}
+/*********************
+  LAYOUT
+**********************/
+/*sm*/
+@media only screen and (max-width : 600px) {
+    .main {
+        margin-top:0;
+        width: 100%;
+        padding: 0;
+    }
+    .main-center {
+
+    }
+    .main-left {
+        padding:0;
+        margin-bottom:-5px;
+    }
+    .card-panel, .card {
+        margin: 10px 0;
+    }
+    .extended {
+        background-color: #f9f9f9 !important;
+    }
+    .container .row {
+        margin: 0;
+    }
+
+}
+/*md*/
+@media only screen and (min-width: 601px) and (max-width: 992px) {
+    .main {
+        width: 95%;
+        margin-top:2rem;
+    }
+    .main-center {
+
+    }
+    .main-left {
+        padding:0;
+        margin-bottom:-5px;
+    }
+    .extended {
+        background-color: #f9f9f9 !important;
+        margin: 10px 5px 10px 5px !important;
+    }
+    .card-panel, .card {
+        margin: 10px;
+    }
+
+}
+/*ld*/
+@media only screen and (min-width : 993px) {
+    .main {
+        width: 80%;
+        margin-top:4rem;
+    }
+    .main-center {
+
+    }
+    .main-left {
+        padding:0;
+    }
+    .card-panel, .card {
+        margin: 2rem;
+    }
+    #about.extended {
+        margin: 1.5rem 1.5rem 2.5rem 1.5rem;
+    }
+    .extended {
+        margin: -.5rem 1.5rem 2.5rem 1.5rem;
+    }
+}
+
+/* left */
+.picture-of-mine {
+    position: relative;
+    min-height:206px;
+}
+
+.picture-of-mine img {
+    position: relative;
+    width: 100%;
+    height:auto;
+}
+
+.picture-of-mine .footer {
+    position: absolute;
+    margin:5px 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(72,72,72, 0.65);
+    width:100%;
+    min-height:80px;
+    color: #fff;
+    font-weight: 300;
+    padding: 0 20px;
+}
+
+.picture-of-mine .footer .title {
+    font-size: 2.5rem;
+    line-height: 2.8rem;
+}
+.picture-of-mine .footer .sub-title {
+    font-size: 1.5rem;
+}
+
+.btn-menu {
+    text-align: left;
+    margin: 0;
+    font-size: 1.2rem;
+    text-transform: none;
+    font-weight: 300;
+    width:100%;
+    height: 74px;
+    line-height: 76px;
+}
+.btn-menu:hover {
+    background-color: transparent;
+    shadow:none;
+}
+.btn-vcard {
+    border: none;
+    border-radius: 2px;
+    display: inline-block;
+    height: 74px;
+    line-height: 76px;
+    outline: 0;
+    padding: 0 2rem;
+    text-transform: uppercase;
+    vertical-align: middle;
+    -webkit-tap-highlight-color: transparent;
+}
+.btn-vcard i {
+    font-size: 1.6rem;
+    line-height: inherit;
+}
+
+ul.fixed-actions-container {
+    position: fixed;
+    right: 23px;
+    bottom: 23px;
+    padding-top: 15px;
+    margin-bottom: 0;
+    z-index: 998; 
+    text-align: center;
+}
+ul.fixed-actions-container li {
+    margin-top: 15px; 
+}
+
+
+[ng-cloak] {
+    display:none;
+}
+
+/* center */
+.site-section p {
+    font-size: 1.1rem;
+    font-weight:300;
+    padding: 1rem 0 1.5rem 0;
+}
+.site-section .title {
+    font-size: 1.3rem;
+    padding: 1.5rem 0 .2rem 0;
+}
+.site-section .subtitle {
+    font-size: 0.9rem;
+    padding: 0 0 .5rem 0;
+}
+.site-section .icons {
+    font-size: 0.9rem;
+    padding: 0 0 .5rem 0;
+}
+
+.site-section .icons span {
+    margin-right:0.5rem;
+}
+
+.site-section .empty-text {
+    padding: 0 0 1rem 0;
+}
+
+#top-action.on {
+    animation: bounceIn .6s;
+    opacity:1;
+}
+
+#top-action.off {
+    animation: fadeOut .6s;
+    opacity:0;
+}
+
+/*   xxxx */
+div.site-app-loading {
+    position: fixed ;
+}
+
+div.site-app-loading div.animated-container {
+    position: fixed ;
+    background-color: #333333 ;
+    top: 0px ;
+    right: 0px ;
+    bottom: 0px ;
+    left: 0px ;
+    opacity: 1.0 ;
+    z-index: 999999 ;
+}
+
+/* Used to initialize the ng-leave animation state. */
+div.site-app-loading div.animated-container.ng-leave {
+    opacity: 1.0 ;
+    transition: all linear 500ms ;
+    -webkit-transition: all linear 500ms ;
+}
+
+/* Used to set the end properties of the ng-leave animation state. */
+div.site-app-loading div.animated-container.ng-leave-active {
+    opacity: 0 ;
+}
+
+div.site-app-loading div.msg {
+    color: #FFFFFF ;
+    font-family: "Roboto", sans-serif;
+    left: 0px ;
+    margin-top: -37px ;
+    position: absolute ;
+    right: 0px ;
+    text-align: center ;
+    top: 50% ;
+}
+
+div.site-app-loading div.msg p {
+    font-size: 18px ;
+    line-height: 14px ;
+    margin: 20px 0px 0px 0px ;
+}
+
+.map-btn {
+    margin:10px 10px 10px 0;
+}
+.map-btn-msg {
+    margin:5px;
+    padding:10px;
+    opacity:0.9;
+    background: #222;
+    color:#fff;
+    font-size:1.1em;
+    border-radius:4px;
+}
+.hidden {
+    display:none;
+}
+
+/*!
+ * font-awesome-animation - v0.0.7
+ * https://github.com/l-lin/font-awesome-animation
+ * License: MIT
+ */
+
+/* PULSE */
+
+@-webkit-keyframes pulse {
+  0% {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+
+  50% {
+    -webkit-transform: scale(0.8);
+    transform: scale(0.8);
+  }
+
+  100% {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    -webkit-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+
+  50% {
+    -webkit-transform: scale(0.8);
+    -ms-transform: scale(0.8);
+    transform: scale(0.8);
+  }
+
+  100% {
+    -webkit-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+}
+
+.faa-pulse.animated
+{
+  -webkit-animation: pulse 3s linear infinite;
+  animation: pulse 3s linear infinite;
+}
+
+.the-carousel {
+    min-height:405px;
+    width:100%;
+    margin:-63px -140px -63px -40px;
+}
+.the-carousel li {
+    
+}
