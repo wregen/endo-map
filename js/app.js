@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-            .module('app', ['ngRoute', 'ngAnimate'])
+            .module('app', ['ngRoute', 'ngMaterial'])
             .config(['$compileProvider', '$routeProvider', '$locationProvider', '$provide', function ($compileProvider, $routeProvider, $locationProvider, $provide) {
                     $provide.factory('$routeProvider', function () {
                         return $routeProvider;
@@ -13,3 +13,7 @@
                     $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|chrome-extension|skype):/);
                 }]);
 })(this.angular);
+
+
+
+
