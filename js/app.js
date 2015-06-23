@@ -2,8 +2,15 @@
     'use strict';
 
     angular
-            .module('app', ['ngRoute', 'ngMaterial'])
-            .config(['$compileProvider', '$routeProvider', '$locationProvider', '$provide', function ($compileProvider, $routeProvider, $locationProvider, $provide) {
+            .module('app', ['ngRoute', 'ngMaterial', 'ngMdIcons'])
+            .config(['$mdThemingProvider', '$compileProvider', '$routeProvider', '$locationProvider', '$provide',
+                function ($mdThemingProvider, $compileProvider, $routeProvider, $locationProvider, $provide) {
+
+                    $mdThemingProvider.theme('default')
+                            .primaryPalette('blue-grey')
+                            .accentPalette('orange');
+
+
                     $provide.factory('$routeProvider', function () {
                         return $routeProvider;
                     });
@@ -12,6 +19,7 @@
                             .hashPrefix('!');
                     $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|chrome-extension|skype):/);
                 }]);
+
 })(this.angular);
 
 

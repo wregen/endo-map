@@ -8,19 +8,26 @@
     controller.$inject = ['$scope'];
 
     function controller($scope) {
-        var vm = this;
-        initMap();
+        var vm = this,
+                zoom = 14,
+                map = new google.maps.Map(document.getElementById('map'), {zoom: zoom});
+        showMyLocation(map);
+        drawOnMap(map);
+        vm.showMyLocation = function () {
+            showMyLocation(map);
+            setDefaultZoom(map, zoom);
+        };
+        vm.setDefaultZoom = function () {
+            setDefaultZoom(map, zoom);
+        };
         return vm;
     }
 
+    function setDefaultZoom(map, zoom) {
+        map.setZoom(zoom);
+    }
 
-    function initMap() {
-        var mapOptions = {
-            zoom: 14
-        };
-        var map = new google.maps.Map(document.getElementById('map'), mapOptions);
-        drawOnMap(map);
-
+    function showMyLocation(map) {
         // Try HTML5 geolocation
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function (position) {
