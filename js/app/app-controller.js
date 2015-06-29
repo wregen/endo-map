@@ -7,10 +7,17 @@
 
     controller.$inject = ['$scope'];
 
+    var map;
+    var drawingManager;
+    var placeIdArray = [];
+    var polylines = [];
+    var snappedCoordinates = [];
+    var apiKey = 'AIzaSyD4wrwLnbGC1JB31fyb0g3PksX_ttZU4FY';
+
     function controller($scope) {
         var vm = this,
-                zoom = 14,
-                map = new google.maps.Map(document.getElementById('map'), {zoom: zoom});
+                zoom = 17;
+        map = new google.maps.Map(document.getElementById('map'), {zoom: zoom});
 
         showMyLocation(map);
         drawOnMap(map);
@@ -21,6 +28,7 @@
         vm.setDefaultZoom = function () {
             setDefaultZoom(map, zoom);
         };
+        vm.clearAllPolylines = clearAllPolylines;
         return vm;
     }
 
@@ -50,6 +58,13 @@
         }
     }
 
+    function clearAllPolylines() {
+        for (var i = 0; i < polylines.length; ++i) {
+            polylines[i].setMap(null);
+        }
+        polylines = [];
+    }
+
     function handleNoGeolocation(errorFlag, map) {
         if (errorFlag) {
             console.log('Error: The Geolocation service failed.');
@@ -66,7 +81,7 @@
     }
 
     function drawOnMap(map) {
-        var drawingManager = new google.maps.drawing.DrawingManager({
+        drawingManager = new google.maps.drawing.DrawingManager({
             drawingMode: google.maps.drawing.OverlayType.POLYLINE,
             drawingControl: true,
             drawingControlOptions: {
@@ -84,10 +99,61 @@
         });
         drawingManager.setMap(map);
 
+        drawingManager.addListener('polylinecomplete', function (poly) {
+            var path = poly.getPath();
+            polylines.push(poly);
+            placeIdArray = [];
+//            console.log(polylines);
+            runSnapToRoad(path);
+            poly.setMap(null);
+        });
+    }
+
+    function runSnapToRoad(path) {
+        var pathValues = [];
+        for (var i = 0; i < path.getLength(); i++) {
+            pathValues.push(path.getAt(i).toUrlValue());
+        }
+
+        $.get('https://roads.googleapis.com/v1/snapToRoads', {
+            interpolate: false,
+            key: apiKey,
+            path: pathValues.join('|')
+        }, function (data) {
+            console.log(data);
+            processSnapToRoadResponse(data);
+            drawSnappedPolyline();
+//            getAndDrawSpeedLimits();
+        });
+    }
+// Store snapped polyline returned by the snap-to-road method.
+    function processSnapToRoadResponse(data) {
+        snappedCoordinates = [];
+        placeIdArray = [];
+        for (var i = 0; i < data.snappedPoints.length; i++) {
+            var latlng = new google.maps.LatLng(
+                    data.snappedPoints[i].location.latitude,
+                    data.snappedPoints[i].location.longitude);
+            snappedCoordinates.push(latlng);
+            placeIdArray.push(data.snappedPoints[i].placeId);
+        }
+        console.log(placeIdArray);
+    }
+
+// Draws the snapped polyline (after processing snap-to-road response).
+    function drawSnappedPolyline() {
+        var snappedPolyline = new google.maps.Polyline({
+            path: snappedCoordinates,
+            strokeColor: 'red',
+            strokeWeight: 3
+        });
+
+        snappedPolyline.setMap(map);
+        polylines.push(snappedPolyline);
     }
 
     function addLatLng(event) {
-        
+
         var path = poly.getPath();
         // Because path is an MVCArray, we can simply append a new coordinate
         // and it will automatically appear
@@ -98,5 +164,38 @@
         if (encodeString) {
             console.log(encodeString);
         }
+    }
+
+    function CenterControl(controlDiv, map) {
+
+        // Set CSS for the control border
+        var controlUI = document.createElement('div');
+        controlUI.style.backgroundColor = '#fff';
+        controlUI.style.border = '2px solid #fff';
+        controlUI.style.borderRadius = '3px';
+        controlUI.style.boxShadow = '0 2px 6px rgba(0,0,0,.3)';
+        controlUI.style.cursor = 'pointer';
+        controlUI.style.marginBottom = '22px';
+        controlUI.style.textAlign = 'center';
+        controlUI.title = 'Click to recenter the map';
+        controlDiv.appendChild(controlUI);
+
+        // Set CSS for the control interior
+        var controlText = document.createElement('div');
+        controlText.style.color = 'rgb(25,25,25)';
+        controlText.style.fontFamily = 'Roboto,Arial,sans-serif';
+        controlText.style.fontSize = '16px';
+        controlText.style.lineHeight = '38px';
+        controlText.style.paddingLeft = '5px';
+        controlText.style.paddingRight = '5px';
+        controlText.innerHTML = 'Center Map';
+        controlUI.appendChild(controlText);
+
+        // Setup the click event listeners: simply set the map to
+        // Chicago
+        google.maps.event.addDomListener(controlUI, 'click', function () {
+            map.setCenter(chicago)
+        });
+
     }
 })(this.angular);
